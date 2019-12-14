@@ -1,4 +1,4 @@
-package prac_11052;
+package prac_11052_again;
 
 import java.util.Scanner;
 
