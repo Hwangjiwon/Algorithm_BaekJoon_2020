@@ -20,14 +20,15 @@ public class Main {
 		dp[2] = 2;
 		dp[3] = 4;
 		
+		for (int j = 4; j <= 100000; j++) {
+			dp[j] = (dp[j - 1] % mod) + (dp[j - 2] % mod) + (dp[j - 3] % mod);
+			dp[j] %= mod;
+		}
+		
 		int t = Integer.parseInt(br.readLine());
 		for (int i = 0; i < t; i++) {
 			int n = Integer.parseInt(br.readLine());
-
-			for (int j = 4; j <= n; j++) {
-				dp[j] = (dp[j - 1] % mod) + (dp[j - 2] % mod) + (dp[j - 3] % mod);
-				dp[j] %= mod;
-			}
+		
 			bw.write(String.valueOf(dp[n])+"\n");
 		}
 		bw.flush();
