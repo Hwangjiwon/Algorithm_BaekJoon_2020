@@ -24,9 +24,11 @@ public class Main {
 			sum += arr.get(i);
 		}
 
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 9; i++) {
 			int sub = 0;
-			for (int j = 1; j < 9; j++) {
+			for (int j = 0; j < 9; j++) {
+				if (i == j)
+					continue;
 				sub = arr.get(i) + arr.get(j);
 				if (sum - sub == 100) {
 					one = i;
@@ -39,10 +41,9 @@ public class Main {
 		arr.remove(one);
 		arr.remove(two);
 		Collections.sort(arr);
-		
-		for (int i = 0; i < arr.size() - 1; i++)
+
+		for (int i = 0; i < arr.size(); i++)
 			bw.write(arr.get(i) + "\n");
-		bw.write(String.valueOf(arr.get(arr.size() - 1)));
 
 		bw.flush();
 		bw.close();
