@@ -14,12 +14,24 @@ public class Main {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
 		int n = Integer.parseInt(br.readLine());
-		int result = 0;
+		String nToStr = new String();
+		nToStr = String.valueOf(n);
+		int len = nToStr.length();
+		
+		int result = 1;
+
+		for (int i = 1; i <= len; i++) {
+			if( i == len ) {
+				result += len;
+			}
+			else result += (int) (9 * Math.pow(10, i));
+		}
+		
 		/*
 		 * for (int i = 1; i <= n; i *= 10) result += (n - i + 1);
 		 */
-		bw.write(result + "");
 
+		System.out.println(result);
 		bw.flush();
 		bw.close();
 		br.close();
