@@ -11,7 +11,6 @@ import java.util.TreeSet;
 public class Main {
 	static int n, m;
 	static ArrayList<Integer> a;
-	static int visited[] = new int[10001];
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -26,7 +25,6 @@ public class Main {
 		for (int i = 0; i < n; i++) {
 			int t = Integer.parseInt(st.nextToken());
 			s.add(t);
-			visited[t]++;
 		}
 
 		a = new ArrayList<Integer>(s);
@@ -43,12 +41,8 @@ public class Main {
 		}
 
 		for (int i = 0; i < a.size(); i++) {
-			if ((idx <= a.get(i)) && (visited[a.get(i)] > 0)) {
-				visited[a.get(i)]--;
+			if (idx <= a.get(i))
 				dfs(a.get(i), len + 1, str + a.get(i) + " ");
-				visited[a.get(i)]++;
-			}
 		}
 	}
-
 }
