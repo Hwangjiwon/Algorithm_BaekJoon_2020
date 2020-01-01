@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 
+// ยüฐํวั url
 // https://jins-dev.tistory.com/m/entry/%EB%8B%A4%EC%9D%8C-%EC%88%9C%EC%97%B4-%EC%B0%BE%EA%B8%B0-%EC%A0%84%EC%B2%B4-%EC%88%9C%EC%97%B4-%ED%83%90%EC%83%89-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Next-Permutation
 
 public class Main {
