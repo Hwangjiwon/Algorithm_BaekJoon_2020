@@ -42,7 +42,7 @@ key를 기준으로 오름차순 정렬.
 
 ----
 
-## **Next Permutation Algorithm ** ##
+## **Next Permutation Algorithm** ##
 
 1. 순열의 전체를 순회하면서(O(n)) N[i] < N[i+1] 인 가장 마지막 i 를 구해낸다.
  1-1. 만약 이때 i가 존재하지 않는다면, 해당 순열이 가장 마지막 순열이 된다.
