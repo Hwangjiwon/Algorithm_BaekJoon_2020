@@ -11,13 +11,12 @@ import java.util.StringTokenizer;
 
 public class Main {
 	static int n;
-	static int[] arr;
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		n = Integer.parseInt(br.readLine());
-		arr = new int[n];
+		int[] arr = new int[n];
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < n; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
@@ -29,12 +28,12 @@ public class Main {
 	}
 
 	public static void nextPermute(int[] nums) {
-		int[] copies = new int[nums.length];
-		for (int i = 0; i < nums.length; i++) {
+		int[] copies = new int[n];
+		for (int i = 0; i < n; i++) {
 			copies[i] = nums[i];
 		}
 		int idx = -1;
-		for (int i = 0; i < copies.length - 1; i++) {
+		for (int i = 0; i < n - 1; i++) {
 			if (copies[i] < copies[i + 1]) {
 				idx = i;
 			}
@@ -44,7 +43,7 @@ public class Main {
 			System.out.println(-1);
 			return;
 		}
-		for (int i = copies.length - 1; i > idx; i--) {
+		for (int i = n - 1; i > idx; i--) {
 			if (copies[idx] < copies[i]) {
 				int tmp = copies[idx];
 				copies[idx] = copies[i];
@@ -52,13 +51,13 @@ public class Main {
 				break;
 			}
 		}
-		for (int i = idx + 1; i < (copies.length + idx + 1) / 2; i++) {
+		for (int i = idx + 1; i < (n + idx + 1) / 2; i++) {
 			int tmp = copies[i];
-			copies[i] = copies[copies.length - (i - idx)];
-			copies[copies.length - (i - idx)] = tmp;
+			copies[i] = copies[n - (i - idx)];
+			copies[n - (i - idx)] = tmp;
 		}
 
-		for (int i = 0; i < copies.length; i++) {
+		for (int i = 0; i < n; i++) {
 			System.out.print(copies[i] + " ");
 		}
 	}
