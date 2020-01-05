@@ -1,4 +1,4 @@
-package prac_10971;
+package prac_10971_again;
 
 import java.io.BufferedReader;
 import java.io.IOException;
