@@ -6,26 +6,31 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int[] t;
-	static int[] p;
-
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		
-		t = new int[n+6];
-		p = new int[n+6];
+
+		int[] t = new int[n + 6]; // 소요시간
+		int[] p = new int[n + 6]; // 수입
+		int[] dp = new int[n + 6];
+
 		StringTokenizer st;
-		for(int i = 1; i <= n; i++) {
+		for (int i = 1; i <= n; i++) {
 			st = new StringTokenizer(br.readLine());
 			t[i] = Integer.parseInt(st.nextToken());
 			p[i] = Integer.parseInt(st.nextToken());
 		}
-		
-		for(int i = 1; i <= n; i++) {
-			
+
+		for (int i = n; i >= 1; i--) {
+			if (i + t[i] <= n + 1)
+				dp[i] = Math.max(p[i] + dp[i + t[i]], dp[i + 1]);
+			else
+				dp[i] = dp[i + 1];
 		}
+		
+		System.out.println(dp[1]);
+		
 		br.close();
 	}
 
