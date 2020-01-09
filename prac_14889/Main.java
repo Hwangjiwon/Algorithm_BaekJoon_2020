@@ -9,14 +9,15 @@ public class Main {
 	static int n, r;
 	static int[] arr;
 	static boolean[] visited;
+	static int[][] s;
+	static int min;
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		n = Integer.parseInt(br.readLine());
 		r = n / 2;
-
-		int[][] s = new int[n][n];
+		s = new int[n][n];
 		visited = new boolean[n];
 		StringTokenizer st;
 		for (int i = 0; i < n; i++) {
@@ -32,8 +33,13 @@ public class Main {
 	}
 
 	public static void dfs(int len, int idx, String str) {
-		if (len == n) {
+		if (len == r) {
 			System.out.println(str);
+			min = 0;
+			int i = Integer.parseInt(String.valueOf(str.charAt(0)));
+			int j = Integer.parseInt(String.valueOf(str.charAt(1)));
+			min = s[i][j] + s[i][j];
+			System.out.println("min" + min);
 			return;
 		}
 
@@ -42,7 +48,7 @@ public class Main {
 				continue;
 			if (!visited[i]) {
 				visited[i] = true;
-				dfs(len + 1, i + 1, str + i + " ");
+				dfs(len + 1, i, str + i);
 				visited[i] = false;
 			}
 		}
