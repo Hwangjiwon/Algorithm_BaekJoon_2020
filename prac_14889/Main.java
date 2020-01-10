@@ -10,7 +10,7 @@ public class Main {
 	static int[] arr;
 	static boolean[] visited;
 	static int[][] s;
-	static int min;
+	static int min = Integer.MAX_VALUE;
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -28,18 +28,14 @@ public class Main {
 		}
 
 		dfs(0, 0, "");
-
+		System.out.println(min);
 		br.close();
 	}
 
 	public static void dfs(int len, int idx, String str) {
 		if (len == r) {
-			System.out.println(str);
-			min = 0;
-			int i = Integer.parseInt(String.valueOf(str.charAt(0)));
-			int j = Integer.parseInt(String.valueOf(str.charAt(1)));
-			min = s[i][j] + s[i][j];
-			System.out.println("min" + min);
+			//System.out.println(str);
+			min = Math.min(min, getAbilityDifference());
 			return;
 		}
 
@@ -52,6 +48,25 @@ public class Main {
 				visited[i] = false;
 			}
 		}
+	}
+
+	public static int getAbilityDifference() {
+		int sumStart = 0;
+		int sumLink = 0;
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				// true ¸é ½ºÅ¸Æ®ÆÀ
+				if (visited[i] && visited[j])
+					sumStart += s[i][j];
+
+				// false ¸é ¸µÅ©ÆÀ
+				if (visited[i] != true && visited[j] != true)
+					sumLink += s[i][j];
+			}
+		}
+
+		return Math.abs(sumStart - sumLink);
 	}
 
 }
