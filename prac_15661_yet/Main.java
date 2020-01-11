@@ -1,4 +1,4 @@
-package prac_15661;
+package prac_15661_yet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
