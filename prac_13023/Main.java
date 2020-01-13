@@ -37,29 +37,37 @@ public class Main {
 
 		for (int i = 0; i < n; i++) {
 			visited[i] = true;
-			if (!flag) 
-				flag = dfs(i, 1);
+			if (!flag) {
+				dfs(1, i);
+			} else {
+				break;
+			}
 			visited[i] = false;
 		}
 
-		System.out.println("0");
+		if (flag) {
+			System.out.println("1");
+		} else {
+			System.out.println("0");
+		}
 		br.close();
 
 	}
 
-	public static boolean dfs(int len, int point) {
-		if (len == 5) {
-			return true;
+	public static void dfs(int len, int point) {
+		if (flag) {
+			return;
 		}
-
-		for (int i = 0; i < relation[n].size(); i++) {
-			int next = relation[n].get(i);
-			if (!visited[next]) {
-				visited[next] = true;
-				dfs(len + 1, next);
-				visited[next] = false;
+		if (len == 5) {
+			flag = true;
+			return;
+		}
+		for (int i = 0; i < relation[len].size(); i++) {
+			if (!visited[(int) relation[len].get(i)]) {
+				visited[(int) relation[len].get(i)] = true;
+				dfs(len + 1,(int) relation[len].get(i));
+				visited[(int) relation[len].get(i)] = false;
 			}
 		}
-		return false;
 	}
 }
