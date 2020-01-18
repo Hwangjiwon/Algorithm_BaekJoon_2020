@@ -22,7 +22,7 @@ public class Main {
 		graph = new int[n+1][n+1];
 		visited = new boolean[n+1];
 		
-		while(m-- != 0) {
+		while(m-- != 0) 	{
 			str = br.readLine().split(" ");
 			int x = Integer.parseInt(str[0]);
 			int y = Integer.parseInt(str[1]);

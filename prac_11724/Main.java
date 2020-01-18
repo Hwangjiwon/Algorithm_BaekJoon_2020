@@ -3,6 +3,8 @@ package prac_11724;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
 	static int n, m;
@@ -32,7 +34,8 @@ public class Main {
 		for(int i = 1; i <= n; i++) {
 			if(visited[i] == false) {
 				cnt++;
-				dfs(i);
+				//dfs(i);
+				bfs(i);
 			}
 		}
 		System.out.println(cnt);
@@ -46,5 +49,24 @@ public class Main {
  				dfs(i);
 			}
 		}
+	}
+	
+	public static void bfs(int node) {
+		Queue<Integer> q = new LinkedList<Integer>();
+		q.offer(node);
+		visited[node] = true;
+		
+		int tmp;
+		while(!q.isEmpty()) {
+			tmp = q.poll();
+			
+			for(int i = 1; i <= n; i++) {
+				if(visited[i] == false && graph[tmp][i] == 1) {
+					visited[i] = true;
+					bfs(i);
+				}
+			}
+		}
+		
 	}
 }
