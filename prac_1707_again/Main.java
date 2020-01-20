@@ -1,10 +1,9 @@
-package prac_1707;
+package prac_1707_again;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
 	static ArrayList<ArrayList<Integer>> graph;
@@ -27,7 +26,6 @@ public class Main {
 			chk = true;
 
 			for (int j = 0; j <= v; j++) {
-				Arrays.fill(color, 0);
 				graph.add(new ArrayList<Integer>());
 			}
 
@@ -48,9 +46,8 @@ public class Main {
 					dfs(i, 1);
 				}
 			}
-			System.out.print(chk ? "YES" : "NO");
+			System.out.println(chk ? "YES" : "NO");
 		}
-		System.out.println();
 		br.close();
 	}
 
