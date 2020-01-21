@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
 	static int n, cnt;
 	static int[][] graph;
 	static boolean[][] visited;
-	static int[] dx = { 0, 0, -1, 1 }; //상하좌우
+	static int[] dx = { 0, 0, -1, 1 }; // 상하좌우
 	static int[] dy = { 1, -1, 0, 0 };
 	static ArrayList<Integer> result = new ArrayList<>();
 
@@ -33,19 +35,20 @@ public class Main {
 			for (int j = 0; j < n; j++) {
 				if (visited[i][j] == false && graph[i][j] == 1) {
 					cnt = 1;
-					dfs(i, j);
+					// dfs(i, j);
+					bfs(i, j);
 					result.add(cnt);
 				}
 			}
 		}
-		
+
 		Collections.sort(result);
-		System.out.println(result.size()); //단지수
-		
-		for(int i = 0; i < result.size(); i++) {
-			System.out.println(result.get(i)); //단지내 집 수
+		System.out.println(result.size()); // 단지수
+
+		for (int i = 0; i < result.size(); i++) {
+			System.out.println(result.get(i)); // 단지내 집 수
 		}
-		
+
 		br.close();
 	}
 
@@ -60,6 +63,34 @@ public class Main {
 				if (graph[nx][ny] == 1 && visited[nx][ny] == false) {
 					cnt++;
 					dfs(nx, ny);
+				}
+			}
+		}
+	}
+
+	public static void bfs(int x, int y) {
+		Queue<Integer> qx = new LinkedList<>();
+		Queue<Integer> qy = new LinkedList<>();
+		qx.add(x);
+		qy.add(y);
+		visited[x][y] = true;
+
+		int tmpx;
+		int tmpy;
+
+		while (!qx.isEmpty() && !qy.isEmpty()) {
+			tmpx = qx.poll();
+			tmpy = qy.poll();
+
+			for (int i = 0; i < 4; i++) {
+				x = tmpx + dx[i];
+				y = tmpy + dy[i];
+
+				if (x >= 0 && y >= 0 && x < n && y < n) {
+					if (graph[x][y] == 1 && visited[x][y] == false) {
+						cnt++;
+						bfs(x, y);
+					}
 				}
 			}
 		}
