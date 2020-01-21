@@ -35,7 +35,7 @@ public class Main {
 			for (int j = 0; j < n; j++) {
 				if (visited[i][j] == false && graph[i][j] == 1) {
 					cnt = 1;
-					// dfs(i, j);
+					//dfs(i, j);
 					bfs(i, j);
 					result.add(cnt);
 				}
@@ -52,28 +52,28 @@ public class Main {
 		br.close();
 	}
 
-	public static void dfs(int x, int y) {
-		visited[x][y] = true;
+	public static void dfs(int y, int x) {
+		visited[y][x] = true;
 
 		for (int i = 0; i < 4; i++) {
 			int nx = x + dx[i];
 			int ny = y + dy[i];
 
 			if (nx >= 0 && ny >= 0 && nx < n && ny < n) {
-				if (graph[nx][ny] == 1 && visited[nx][ny] == false) {
+				if (graph[ny][nx] == 1 && visited[ny][nx] == false) {
 					cnt++;
-					dfs(nx, ny);
+					dfs(ny, nx);
 				}
 			}
 		}
 	}
 
-	public static void bfs(int x, int y) {
+	public static void bfs(int y, int x) {
 		Queue<Integer> qx = new LinkedList<>();
 		Queue<Integer> qy = new LinkedList<>();
 		qx.add(x);
 		qy.add(y);
-		visited[x][y] = true;
+		visited[y][x] = true;
 
 		int tmpx;
 		int tmpy;
@@ -87,9 +87,9 @@ public class Main {
 				y = tmpy + dy[i];
 
 				if (x >= 0 && y >= 0 && x < n && y < n) {
-					if (graph[x][y] == 1 && visited[x][y] == false) {
+					if (graph[y][x] == 1 && visited[y][x] == false) {
 						cnt++;
-						bfs(x, y);
+						bfs(y, x);
 					}
 				}
 			}
