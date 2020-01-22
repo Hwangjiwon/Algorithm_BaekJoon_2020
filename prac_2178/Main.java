@@ -26,14 +26,14 @@ public class Main {
 		for (int i = 0; i < n; i++) {
 			str = br.readLine().split("");
 			for (int j = 0; j < m; j++) {
-				graph[i][j] = Integer.parseInt(str[j]);
+				graph[i+1][j+1] = Integer.parseInt(str[j]);
 			}
 		}
 
-		visited[0][0] = true;
-		bfs(0,0);
+		visited[1][1] = true;
+		bfs(1,1);
 		
-		System.out.println(graph[n-1][m-1]);
+		System.out.println(graph[n][m]);
 	
 		br.close();
 	}
@@ -41,7 +41,6 @@ public class Main {
 	public static void bfs(int y, int x) {
 		Queue<Integer> qx = new LinkedList<Integer>();
 		Queue<Integer> qy = new LinkedList<Integer>();
-		//System.out.println(x + " " + y);
 		
 		qx.add(x);
 		qy.add(y);
@@ -57,10 +56,11 @@ public class Main {
 				x = tmpx + dx[i];
 				y = tmpy + dy[i];
 
-				if (x >= 0 && y >= 0 && x < m && y < n) {
+				if (x >= 1 && y >= 1 && x <= m && y <= n) {
 					if (graph[y][x] == 1 && visited[y][x] == false) {
 						qx.add(x);
 						qy.add(y);
+					
 						graph[y][x] = graph[tmpy][tmpx] + 1;
 						visited[y][x] = true;
 					}
