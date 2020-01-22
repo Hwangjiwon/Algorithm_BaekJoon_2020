@@ -15,12 +15,10 @@ public class Main {
 	static class Dot {
 		int y;
 		int x;
-		int day;
-		
-		public Dot(int y, int x, int day) {
+
+		public Dot(int y, int x) {
 			this.y = y;
 			this.x = x;
-			this.day = day;
 		}
 	}
 
@@ -47,49 +45,50 @@ public class Main {
 
 	public static void bfs() {
 		Queue<Dot> q = new LinkedList<Main.Dot>();
-		int day = 0;
-		
+
 		// 토마토가 있는 좌표 찾아서 Queue에 넣기
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (box[i][j] == 1) {
-					q.add(new Dot(i, j, 0));
+					q.add(new Dot(i, j));
 				}
 			}
 		}
 
 		while (!q.isEmpty()) {
 			Dot dot = q.poll();
-			day = dot.day;
-			
+
 			for (int i = 0; i < 4; i++) {
 				int nx = dot.x + dx[i];
 				int ny = dot.y + dy[i];
 
 				if (nx >= 0 && ny >= 0 && nx < m && ny < n) {
 					if (box[ny][nx] == 0) {
-						box[ny][nx] = 1;
-						q.add(new Dot(ny, nx, day+1));
+						// box[ny][nx]칸에 이전 box의 익은일수 +1
+						box[ny][nx] = box[dot.y][dot.x] + 1;
+						q.add(new Dot(ny, nx));
 					}
 				}
 			}
 		}
-		
-		if(chk()) 
-			System.out.println(day);
-		else System.out.println(-1);
+
+		System.out.println(chkDay());
 
 	}
-	
-	public static boolean chk() {
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < m; j++) {
-				if(box[i][j] == 0) { //덜익은 토마토 있음
-					return false;
+
+	public static int chkDay() {
+		int day = 0;
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (box[i][j] == 0) { // 덜익은 토마토 있음
+					return -1;
+				} else {
+					day = Math.max(day, box[i][j]);
 				}
 			}
 		}
-		return true;
+		return day - 1;
 	}
 
 }
