@@ -85,7 +85,9 @@ public class Main {
 
 				if (x >= 0 && y >= 0 && x < w && y < h) {
 					if (graph[y][x] == 1 && visited[y][x] == false) {
-						bfs(y, x);
+						visited[y][x] = true;
+						qx.add(x);
+						qy.add(y);
 					}
 				}
 			}
